@@ -15,6 +15,7 @@ import { message } from "../../components/ui-kit/message";
 
 import AppWrapper from "./app.style";
 import { Button } from "antd";
+import { validateInput } from "../../helpers/validateInput";
 
 const App: React.FC = () => {
   const [errors, setErrors] = useState<IErrorValidate>();
@@ -30,23 +31,17 @@ const App: React.FC = () => {
   const handleChangeSocialSecurityNumber = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const input = event.target.value.match(socialSecurityNumberPattern);
-    if (input && input.length) {
-      setSocialSecurityNumber(input[0]);
-      const newError: IErrorValidate = { ...errors };
-      for (const item in newError) {
-        if (item === "socialSecurityNumber") {
-          delete newError[item];
-        }
-      }
-      setErrors(newError);
-    } else {
-      setSocialSecurityNumber("");
-      setErrors({
-        ...errors,
-        socialSecurityNumber: t("socialSecurityNumberInValidateMessage")
-      });
+    const input = validateInput(
+      event.target.value,
+      "socialSecurityNumber",
+      errors,
+      socialSecurityNumberPattern,
+      t("socialSecurityNumberInValidateMessage")
+    );
+    if (input.validate) {
+      setSocialSecurityNumber(input.value);
     }
+    setErrors(input.errors);
   };
   const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,21 +52,19 @@ const App: React.FC = () => {
       country &&
       (!errors || Object.keys(errors).length === 0)
     ) {
+      console.log("Success");
     } else {
-      message.error(`p 
-      c
-      d
-      f
-      g
-      `);
+      for (const index in errors) {
+        message.error(errors[index]);
+      }
     }
   };
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
         <BoxWrapper className="boxwrapper">
-          <label htmlFor="Social security number" />
           <form onSubmit={handleSubmitForm}>
+            <label className="labelform">{t("socialSecurityNumber")}</label>
             <Input
               placeholder={t("socialSecurityNumber")}
               onChange={handleChangeSocialSecurityNumber}

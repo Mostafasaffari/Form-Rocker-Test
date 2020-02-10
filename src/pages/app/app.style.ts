@@ -11,6 +11,10 @@ const AppWrapper = styled.div`
       display: flex;
       flex-direction: column;
 
+      .labelform {
+        color: ${props => props.theme.colors.font.main};
+        margin-bottom: ${props => props.theme.sizes.spacing.s10};
+      }
       .errorvalidate {
         color: ${props => props.theme.colors.font.danger};
         margin-top: ${props => props.theme.sizes.spacing.s10};
