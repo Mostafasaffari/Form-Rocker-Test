@@ -7,6 +7,9 @@ import { IErrorValidate } from "../../interfaces/IErrorsValidate";
 
 import { ICountry } from "../../entities/country";
 
+import { getAllCountriesApi } from "../../services/countryApi";
+
+import storage from "../../helpers/storage";
 import { validateInput } from "../../helpers/validateInput";
 import {
   socialSecurityNumberPattern,
@@ -24,7 +27,6 @@ import { message } from "../../components/ui-kit/message";
 import { Select, Option } from "../../components/ui-kit/select";
 
 import AppWrapper from "./app.style";
-import { getAllCountriesApi } from "../../services/countryApi";
 
 const App: React.FC = () => {
   const { theme, formData } = useSelector((state: AppState) => {
@@ -37,18 +39,21 @@ const App: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState(formData.phoneNumber);
   const [emailAddress, setEmailAddress] = useState(formData.emailAddress);
   const [country, setCountry] = useState(formData.country);
-  const [countryList, setCountryList] = useState<ICountry[]>([]);
+  const [countryList, setCountryList] = useState<ICountry[]>(
+    storage.get("country") ? JSON.parse(storage.get("country")!) : []
+  );
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getCoutryList();
+    if (countryList.length === 0) getCoutryList();
   }, []);
   const getCoutryList = async () => {
     try {
       const response = await getAllCountriesApi();
       setCountryList(response);
+      storage.set("country", JSON.stringify(response));
     } catch (err) {
       message.error(err.message);
     }
