@@ -5,7 +5,7 @@ export interface IFormState {
   socialSecurityNumber: string;
   phoneNumber: string;
   emailAddress: string;
-  country: boolean;
+  country: string;
 }
 
 type IChangeFieldValueAction = {

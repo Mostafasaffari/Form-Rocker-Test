@@ -26,7 +26,7 @@ const userReducer = (
       storage.set(
         "forms",
         JSON.stringify({
-          ...storageFormDataObject,
+          ...JSON.parse(storage.get("forms") ? storage.get("forms")! : "{}"),
           [`${action.fieldName}`]: action.value
         })
       );

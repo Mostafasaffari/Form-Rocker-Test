@@ -1,4 +1,11 @@
 {
-  "socialSecurityNumber": "Social security number",
-  "socialSecurityNumberInValidateMessage": "Social security number is not valid"
+  "socialSecurityNumber": "Social security number (123456-1234)",
+  "socialSecurityNumberInValidateMessage": "Social security number is not valid",
+  "phoneNumber": "Phone number (+46 123 1234 12)",
+  "phoneNumberInValidateMessage": "Phone number is not valid",
+  "emailAddress": "Email address",
+  "emailAddressInValidateMessage": "Email address is not valid",
+  "country": "Choose a country",
+  "countryInValidateMessage": "Please choose a country",
+  "inValidateFormMessage": "Please fill out all inputs!"
 }

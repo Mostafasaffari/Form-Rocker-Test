@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeName, DefaultTheme } from "styled-components";
 
-import Button from "../ui-kit/button/button";
+import { Button } from "../ui-kit/button/button";
 
 import { MainTheme, SpecialTheme } from "../../style/themes";
 

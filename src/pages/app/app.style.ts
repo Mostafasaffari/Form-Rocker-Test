@@ -14,6 +14,7 @@ const AppWrapper = styled.div`
       .labelform {
         color: ${props => props.theme.colors.font.main};
         margin-bottom: ${props => props.theme.sizes.spacing.s10};
+        margin-top: ${props => props.theme.sizes.spacing.s5};
       }
       .errorvalidate {
         color: ${props => props.theme.colors.font.danger};

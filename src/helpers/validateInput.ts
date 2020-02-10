@@ -27,11 +27,11 @@ export const validateInput = (
     };
   }
   return {
+    value,
     validate: false,
     errors: {
       ...errors,
       [fieldName]: invalideMessage
-    },
-    value: ""
+    }
   };
 };

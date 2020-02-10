@@ -12,8 +12,6 @@ interface IApiConfig {
 interface IResponseData {
   // it depends on your response api data
   data: any;
-  error: any;
-  pagination: any;
 }
 
 class MyAPI {
@@ -24,15 +22,15 @@ class MyAPI {
   public async get(url: string): Promise<IResponseData> {
     try {
       const response = await axios.get(url, this.config);
-      return response.data as IResponseData;
+      return response as IResponseData;
     } catch (err) {
-      throw err;
+      return handleError(err);
     }
   }
   public async post(url: string, data: any = {}): Promise<IResponseData> {
     try {
       const response = await axios.post(url, data, this.config);
-      return response.data as IResponseData;
+      return response as IResponseData;
     } catch (err) {
       return handleError(err);
     }
@@ -40,7 +38,7 @@ class MyAPI {
   public async put(url: string, data: any = {}): Promise<IResponseData> {
     try {
       const response = await axios.put(url, data, this.config);
-      return response.data as IResponseData;
+      return response as IResponseData;
     } catch (err) {
       return handleError(err);
     }
@@ -51,7 +49,7 @@ class MyAPI {
         ...this.config,
         data: { ...data }
       });
-      return response.data as IResponseData;
+      return response as IResponseData;
     } catch (err) {
       return handleError(err);
     }
