@@ -1,14 +1,4 @@
 {
-  "title": "Simple Dashboard",
-  "username": "Username",
-  "password": "Password",
-  "login": "Login",
-  "dashboard": "Dashboard",
-  "sidebarMenu": {
-    "todoList": "Todo List",
-    "setting": "Setting"
-  },
-  "footer": {
-    "copy": "Instarabbit Co ©2019"
-  }
+  "socialSecurityNumber": "Social security number",
+  "socialSecurityNumberInValidateMessage": "Social security number is not valid"
 }
