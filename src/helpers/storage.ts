@@ -52,7 +52,14 @@ class CookieStorage implements IStorage {
   };
 }
 
-const cookieStore: IStorage = new CookieStorage();
-const localStore: IStorage = new MyLocalStorage();
+class Storage implements IStorage {
+  storage: IStorage;
+  constructor() {
+    this.storage = new MyLocalStorage(); //Dependency Inversion=> you can change easily storage from cookie storage or sessionDB or ...
+  }
+  get = (name: string) => this.storage.get(name);
+  set = (name: string, value: string) => this.storage.set(name, value);
+  clear = (name: string) => this.storage.clear(name);
+}
 
-export { cookieStore, localStore };
+export default new Storage();

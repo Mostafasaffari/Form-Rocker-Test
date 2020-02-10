@@ -1,6 +1,6 @@
 import AppSetting from "./appSetting/reducer";
-import User from "./user/reducer";
+import Form from "./form/reducer";
 export default {
   AppSetting,
-  User
+  Form
 };
